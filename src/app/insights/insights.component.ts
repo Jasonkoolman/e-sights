@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import Chart from 'chart.js';
+import { InsightsData } from './insights-data.model';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'es-insights',

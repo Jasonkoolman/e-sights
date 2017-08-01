@@ -1,5 +1,4 @@
-
-class InsightsData {
+export class InsightsData {
 
   private data: Object;
 
