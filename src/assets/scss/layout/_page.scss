@@ -1,0 +1,108 @@
+#browse {
+  margin-top: 10rem;
+  max-width: 600px;
+  text-align: center;
+  animation: slide 800ms ease;
+  transition: all 600ms ease;
+
+  @include breakpoint-down(md) {
+    margin-top: 5rem;
+  }
+
+  &.animate {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  .lead {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  form {
+    position: relative;
+  }
+  input {
+    padding-right: 3rem;
+    border: 1px solid #FFF;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+
+    &:hover, &:focus {
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    }
+  }
+  button {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: -0.75rem;
+    padding: 0;
+    border-radius: 0.75rem;
+    background-color: transparent;
+
+    span:before {
+      content: '';
+      display: inline-block;
+      height: 0.4em;
+      width: 0.4em;
+      border-style: solid;
+      border-color: #888;
+      border-width: 0.2em 0.2em 0 0;
+      transform: rotate(45deg);
+    }
+    &:hover span:before {
+      border-color: $color-base;
+    }
+  }
+
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#loader {
+  position: fixed;
+  top: -2.5rem;
+  left: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-top: -1.25rem;
+  margin-left: -1.25rem;
+  border-radius: 2px;
+  background-color: #FFF;
+  animation: load 1.2s infinite ease-in-out;
+  transition: all 600ms ease;
+  opacity: 0;
+
+  &.animate {
+    top: 25vh;
+    opacity: 1;
+  }
+}
+
+@keyframes load {
+  0% {
+    transform: perspective(7.5rem) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(7.5rem) rotateX(-180.1deg) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(7.5rem) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
