@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { InsightsData } from './insights-data.model';
+import { Insights } from './insights.model';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -8,7 +8,8 @@ import { Chart } from 'chart.js';
   styleUrls: ['./insights.component.scss']
 })
 export class InsightsComponent implements OnChanges {
-  @Input() data: Object|InsightsData;
+
+  @Input() data: Object|Insights;
 
   constructor() { }
 
@@ -19,8 +20,7 @@ export class InsightsComponent implements OnChanges {
    */
   ngOnChanges(changes: any) {
     if (changes.hasOwnProperty('data') && changes.data.currentValue ) {
-      console.log('Data retrieved: ', this.data);
-      this.data = new InsightsData(this.data);
+      this.data = new Insights(this.data);
       this.load();
     }
   }
@@ -29,7 +29,7 @@ export class InsightsComponent implements OnChanges {
    * Load the insights data.
    */
   load() {
-    console.log('Insights data: ', this.data);
+
   }
 
 }
