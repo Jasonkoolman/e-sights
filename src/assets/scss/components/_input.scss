@@ -1,0 +1,33 @@
+.input {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: spacing($input-padding);
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  outline: 0;
+  background-color: $input-background;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $input-line-height;
+  color: $input-color;
+  transition: $input-transition;
+
+  &.ng-dirty.ng-invalid {
+    border: 1px solid $color-negative !important;
+  }
+}
+
+// Placeholder
+::-webkit-input-placeholder {
+  color: $input-placeholder;
+}
+:-moz-placeholder {
+  color: $input-placeholder;
+}
+::-moz-placeholder {
+  color: $input-placeholder;
+}
+:-ms-input-placeholder {
+  color: $input-placeholder;
+}

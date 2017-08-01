@@ -1,0 +1,37 @@
+// Media queries
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($grid-breakpoints, $size)) {
+    @content;
+  }
+}
+@mixin breakpoint-down($size) {
+  @media (max-width: #{map-get($grid-breakpoints, $size) - 1px}) {
+    @content;
+  }
+}
+@mixin breakpoint-only($size) {
+  @include breakpoint-up($size) {
+    @include breakpoint-down($size) {
+      @content;
+    }
+  }
+}
+
+// Buttons
+@mixin make-button($color, $background-color, $border-color: null, $increments: 5%, $hollow: false) {
+  border-color: $border-color;
+  color: $color;
+  background-color: $background-color;
+
+  &:focus,
+  &:hover {
+    border-color: $border-color and darken($border-color, $increments);
+    color: if($hollow, darken($color, $increments), $color);
+    background-color: $background-color and darken($background-color, $increments);
+  }
+  &:active {
+    border-color: $border-color and darken($border-color, $increments*2);
+    color: if($hollow, darken($color, $increments*2), $color);
+    background-color: $background-color and darken($background-color, $increments*2);
+  }
+}

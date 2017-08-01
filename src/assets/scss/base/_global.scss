@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $font-size-base;
+  font-family: $font-family-base;
+  line-height: $line-height-base;
+  color: $color-base;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  //background: #56ab2f;
+  //background: linear-gradient(to left, #a8e063, #56ab2f);
+  //
+  background: #e96443;
+  background: linear-gradient(to left, #904e95, #e96443);
+  //
+  //background: #159957;
+  //background: linear-gradient(to top, #155799, #159957);
+}
