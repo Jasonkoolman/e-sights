@@ -2,15 +2,9 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="326px" height="96px" viewBox="0 0 326 96" enable-background="new 0 0 326 96" xml:space="preserve">
-  <style type="text/css" >
-      <![CDATA[
-        .letter {}
-      ]]>
-    </style>
 <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M109.9,6.35c0-3.31,2.69-6,6-6s6,2.69,6,6s-2.69,6-6,6
 	S109.9,9.66,109.9,6.35z"/>
-<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" class="letter"
-      d="M11.49,43.26c0.21-2.21,0.74-4.24,1.61-6.11
+<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M11.49,43.26c0.21-2.21,0.74-4.24,1.61-6.11
 	c0.86-1.86,1.99-3.44,3.39-4.75c1.41-1.3,3.02-2.32,4.86-3.05c1.83-0.72,3.78-1.09,5.85-1.09c2.06,0,4.03,0.37,5.9,1.09
 	c1.86,0.73,3.49,1.75,4.89,3.05c1.41,1.31,2.55,2.89,3.46,4.75c0.9,1.87,1.45,3.9,1.65,6.11H11.49z M41.74,70.6
 	c4.16-2.5,7.14-5.721,8.96-9.66l-9.39-2.68c-0.55,1.199-1.28,2.291-2.22,3.291s-2,1.859-3.19,2.549c-1.2,0.701-2.52,1.23-3.95,1.609
