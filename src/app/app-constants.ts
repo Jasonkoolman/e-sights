@@ -11,3 +11,11 @@ export const RESOURCE_TYPES = [
   {label: 'Text', field: 'textResponseBytes', color: 'rgba(28, 96, 177, 0.4)'},
   {label: 'Other', field: 'otherResponseBytes', color: 'rgba(255, 255, 255, 0.4)'},
 ];
+
+export const RESULT_MESSAGES = [
+  {threshold: 90, text: 'There is no such thing as perfection, is there?'},
+  {threshold: 75, text: 'This is a good score. Are your proud? You should be.'},
+  {threshold: 50, text: 'Not bad, but there is room for improvement.'},
+  {threshold: 25, text: 'The website\'s performance needs improvement.'},
+  {threshold: 0, text: 'The website\'s performance is very poor'}
+];

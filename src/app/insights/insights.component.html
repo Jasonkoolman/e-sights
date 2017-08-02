@@ -2,12 +2,13 @@
 
   <section>
     <div class="row">
-      <div class="col col--md-6">
-        <img *ngIf="insights" [src]="screenshot | trustedUrl" />
+      <div class="col col--md-5">
+        <h4>Score</h4>
+        <p>{{ resultMessage }}</p>
+        <span style="font-size: 2.5rem; line-height: 1;">{{ score }}</span> <span style="opacity: 0.8">/ 100</span>
       </div>
-      <div class="col col--md-6">
-        <p>Your score</p>
-        <span style="font-size: 2.5rem; line-height: 1;">{{ insights?.getPageSpeedScore() }}</span> / 100
+      <div class="col col--md-7">
+        <img *ngIf="insights" [src]="screenshot | trustedUrl" />
       </div>
     </div>
   </section>

@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, ViewChild, ElementRef } from '@angular/cor
 import { Insights } from './insights.model';
 import { InsightsSuggestion } from './insights-suggestion.interface';
 import { Chart  } from 'chart.js';
-import { RESOURCE_TYPES } from '../app-constants';
+import { RESOURCE_TYPES, RESULT_MESSAGES } from '../app-constants';
 
 @Component({
   selector: 'es-insights',
@@ -15,6 +15,7 @@ export class InsightsComponent implements OnChanges {
   @ViewChild('resourceChart') resourceChartElement: ElementRef;
 
   public insights: Insights;
+  public score: number;
   public screenshot: string;
   public suggestions: Array<InsightsSuggestion>;
 
@@ -46,6 +47,7 @@ export class InsightsComponent implements OnChanges {
    */
   private getData() {
     this.insights = new Insights(this.data);
+    this.score = this.insights.getPageSpeedScore();
     this.screenshot = this.insights.getScreenshotSource();
     this.suggestions = this.insights.getSuggestions();
   }
@@ -91,6 +93,19 @@ export class InsightsComponent implements OnChanges {
         }
       }
     });
+  }
+
+  /**
+   * Displays a message based on the score.
+   *
+   * @returns {string}
+   */
+  get resultMessage() {
+    for (let i = 0, msg; msg = RESULT_MESSAGES[i]; ++i) {
+      if (this.score >= msg.threshold) {
+        return msg.text;
+      }
+    }
   }
 
 }
