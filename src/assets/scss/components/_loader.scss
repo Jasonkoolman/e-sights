@@ -1,0 +1,32 @@
+#loader {
+  position: fixed;
+  top: -2.5rem;
+  left: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-top: -1.25rem;
+  margin-left: -1.25rem;
+  border-radius: 2px;
+  background-color: #FFF;
+  animation: load 1.2s infinite ease-in-out;
+  transition: all 600ms ease;
+  opacity: 0;
+  z-index: 100;
+
+  &.animate {
+    top: 25vh;
+    opacity: 1;
+  }
+}
+
+@keyframes load {
+  0% {
+    transform: perspective(7.5rem) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(7.5rem) rotateX(-180.1deg) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(7.5rem) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
