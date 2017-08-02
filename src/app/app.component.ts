@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  public data;
+  public data: Object;
 
   constructor() { }
 

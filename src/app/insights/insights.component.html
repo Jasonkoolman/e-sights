@@ -1,9 +1,9 @@
-<div id="insights" class="container" [class.hidden]="!data">
+<main id="insights" class="container" [class.hidden]="!data">
 
   <section>
     <div class="row">
       <div class="col col--md-6">
-        <img *ngIf="insights" [src]="screenSrc | safeUrl" />
+        <img *ngIf="insights" [src]="screenshot | trustedUrl" />
       </div>
       <div class="col col--md-6">
         <p>Your score</p>
@@ -13,14 +13,16 @@
   </section>
 
   <section>
+    <h4>Resources</h4>
     <canvas width="400" height="400" #resourceChart></canvas>
   </section>
 
   <section>
+    <h4>Suggestions</h4>
     <div class="suggestion" *ngFor="let suggestion of suggestions">
-      <h5>{{ suggestion.name }} ({{ suggestion.impact.toFixed(0) }})</h5>
+      <span>{{ suggestion.name }} ({{ suggestion.impact.toFixed(0) }})</span>
       <p>{{ suggestion.summary }}</p>
     </div>
   </section>
 
-</div>
+</main>

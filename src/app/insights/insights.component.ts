@@ -1,36 +1,29 @@
 import { Component, Input, OnChanges, ViewChild, ElementRef } from '@angular/core';
 import { Insights } from './insights.model';
 import { InsightsSuggestion } from './insights-suggestion.interface';
-import { Chart } from 'chart.js';
-
-const RESOURCE_TYPES = [
-  {label: 'JavaScript', field: 'javascriptResponseBytes', color: 'rgba(255, 206, 86, 0.4)'},
-  {label: 'Images', field: 'imageResponseBytes', color: 'rgba(89, 178, 0, 0.4)'},
-  {label: 'CSS', field: 'cssResponseBytes', color: 'rgba(0, 133, 178, 0.4)'},
-  {label: 'HTML', field: 'htmlResponseBytes', color: 'rgba(255, 99, 132, 0.4)'},
-  {label: 'Flash', field: 'flashResponseBytes', color: 'rgba(231, 77, 49, 0.4)'},
-  {label: 'Text', field: 'textResponseBytes', color: 'rgba(28, 96, 177, 0.4)'},
-  {label: 'Other', field: 'otherResponseBytes', color: 'rgba(255, 255, 255, 0.4)'},
-];
+import { Chart  } from 'chart.js';
+import { RESOURCE_TYPES } from '../app-constants';
 
 @Component({
   selector: 'es-insights',
   templateUrl: './insights.component.html',
-  styleUrls: ['./insights.component.scss']
 })
 export class InsightsComponent implements OnChanges {
 
   @Input() data;
-  @ViewChild('resourceChart') resourceChart: ElementRef;
+
+  @ViewChild('resourceChart') resourceChartElement: ElementRef;
 
   public insights: Insights;
-  public screenSrc: string;
+  public screenshot: string;
   public suggestions: Array<InsightsSuggestion>;
 
+  private resourceChart: Chart;
+
   constructor() {
-    Chart.defaults.global.defaultFontColor = '#fff';
     Chart.defaults.global.defaultFontFamily = '"Roboto", sans-serif';
     Chart.defaults.global.defaultFontSize = 14;
+    Chart.defaults.global.defaultFontColor = '#fff';
     Chart.defaults.global.legend.position = 'left';
     Chart.defaults.global.legend.labels.padding = 15;
     Chart.defaults.global.legend.labels.usePointStyle = true;
@@ -42,25 +35,25 @@ export class InsightsComponent implements OnChanges {
    * @param changes
    */
   ngOnChanges(changes: any) {
-    if (changes.hasOwnProperty('data') && changes.data.currentValue ) {
-      this.load();
+    if (changes.hasOwnProperty('data') && changes.data.currentValue) {
+      this.getData();
       this.displayResourceChart();
     }
   }
 
   /**
-   * Load the insights data.
+   * Retrieve the insights data.
    */
-  load() {
+  private getData() {
     this.insights = new Insights(this.data);
+    this.screenshot = this.insights.getScreenshotSource();
     this.suggestions = this.insights.getSuggestions();
-    this.screenSrc = this.insights.getScreenshotSource();
   }
 
   /**
    * Display the resource chart.
    */
-  public displayResourceChart(): void {
+  private displayResourceChart(): void {
     const stats = this.data.pageStats;
     const labels = [];
     const dataset = {
@@ -79,7 +72,11 @@ export class InsightsComponent implements OnChanges {
       }
     }
 
-    new Chart(this.resourceChart.nativeElement, {
+    if (this.resourceChart) {
+      this.resourceChart.destroy(); // remove previous instance
+    }
+
+    this.resourceChart = new Chart(this.resourceChartElement.nativeElement, {
       type: 'doughnut',
       data: {
         labels: labels,
@@ -87,8 +84,10 @@ export class InsightsComponent implements OnChanges {
       },
       options: {
         title: {
+          display: true,
           text: `${totalBytes} bytes loaded over ${stats.numberResources} resources`,
-          display: true
+          fontSize: 16,
+          fontStyle: 300
         }
       }
     });

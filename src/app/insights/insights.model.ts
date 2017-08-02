@@ -39,7 +39,7 @@ export class Insights {
 
       let summary = '';
       if (result.hasOwnProperty('summary')) {
-        let args = result.summary.args;
+        const args = result.summary.args;
         summary = result.summary.format;
 
         for (const arg in args) {
@@ -64,15 +64,15 @@ export class Insights {
   }
 
   /**
-   * Fixes base64 string by replacing '_' with '/' and '-' with '+'.
+   * Get the source URL of a screenshot and fix the base64 string.
    *
-   * @see https://groups.google.com/forum/#!topic/google-api-python-client/DjbJ0BwjbPo
-   *
+   * @see     https://groups.google.com/forum/#!topic/google-api-python-client/DjbJ0BwjbPo
    * @returns {string}
    */
   getScreenshotSource() {
-    let base64 = this.data.screenshot.data.replace(/_/g, '/');
-        base64 = base64.replace(/-/g, '+');
+    const base64 = this.data.screenshot.data
+      .replace(/_/g, '/')
+      .replace(/-/g, '+');
 
     return 'data:image/jpeg;base64,' + base64;
   }

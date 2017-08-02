@@ -1,15 +1,15 @@
-<div id="browse" class="container" [class.animate]="loading">
+<header id="browse" class="container" [class.animate]="loading">
 
   <img src="../assets/img/logo-esights.svg" alt="ESights" width="164" height="48">
   <p class="lead">Time to test your website.</p>
 
-  <form (ngSubmit)="onSubmit(form.valid && form.dirty && !loading)" #form="ngForm" autocomplete="off">
+  <form (ngSubmit)="submit(form.valid && form.dirty && !loading)" #form="ngForm" autocomplete="off" novalidate>
     <input type="url" class="input" name="url" placeholder="Enter URL" pattern="http(s)?://.*" [(ngModel)]="url">
     <button type="submit" class="btn" aria-label="Analyze">
       <span></span>
     </button>
   </form>
 
-</div>
+</header>
 
 <div id="loader" [class.animate]="loading"></div>

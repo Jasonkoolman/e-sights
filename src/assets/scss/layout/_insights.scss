@@ -1,5 +1,5 @@
 #insights {
-  transition: all 600ms ease 200ms;
+  transition: all 600ms ease 300ms;
 
   section {
     color: #FFF;
@@ -12,19 +12,19 @@
     display: block;
     border-radius: 0.25rem;
   }
-  .suggestion {
-    p {
-      color: rgba(255,255,255,0.75);
-    }
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-    }
-  }
 
   &.hidden {
     transform: scale(0.5);
     opacity: 0;
+  }
+}
+
+.suggestion {
+  margin-top: 2rem;
+
+  p {
+    margin-top: 0.125rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
   }
 }

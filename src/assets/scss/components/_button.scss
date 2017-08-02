@@ -24,9 +24,6 @@
 }
 
 // Variations
-.btn--primary {
-  @include make-button(#FFF, $color-primary);
-}
 .btn--positive {
   @include make-button(#FFF, $color-positive);
 }
@@ -49,17 +46,6 @@
 .btn--fluid {
   display: block;
   width: 100%;
-}
-
-// Icon
-.btn--icon .icon {
-  margin-right: 0.5rem;
-  line-height: 1;
-
-  &.icon--right {
-    margin-right: 0;
-    margin-left: 0.5rem;
-  }
 }
 
 // Grouped

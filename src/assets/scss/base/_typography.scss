@@ -3,7 +3,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.75rem;
   font-family: $font-family-heading;
-  font-weight: 300;
+  font-weight: 400;
   color: $color-heading;
   line-height: 1;
 
@@ -20,11 +20,11 @@ h6 { font-size: map_get($font-sizes-heading, 'h6') }
 
 // Link
 a {
-  color: $color-primary;
+  color: #FFF;
   text-decoration: dotted;
 
   &:hover {
-    color: darken($color-primary, 15%);
+    color: darken(#FFF, 15%);
   }
 }
 

@@ -10,14 +10,14 @@ import { InsightsComponent } from './insights/insights.component';
 import { BrowseComponent } from './browse/browse.component';
 import { BrowseService } from './browse/browse.service';
 
-import { SafeUrlPipe } from './shared/safe-url.pipe';
+import { TrustedUrlPipe } from './pipes/trusted-url.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     InsightsComponent,
     BrowseComponent,
-    SafeUrlPipe
+    TrustedUrlPipe
   ],
   imports: [
     HttpModule,

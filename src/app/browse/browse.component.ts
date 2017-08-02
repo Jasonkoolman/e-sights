@@ -4,15 +4,15 @@ import { BrowseService } from './browse.service';
 @Component({
   selector: 'es-browse',
   templateUrl: './browse.component.html',
-  styleUrls: ['./browse.component.scss']
 })
 export class BrowseComponent {
 
   @Output() submitted = new EventEmitter();
 
-  private url: string;
+  public loading = false;
+  public url: string;
+
   private data: Object;
-  private loading = false;
 
   constructor(private browseService: BrowseService) { }
 
@@ -21,7 +21,7 @@ export class BrowseComponent {
    *
    * @param {boolean} isValid
    */
-  onSubmit(isValid: boolean): void {
+  submit(isValid: boolean): void {
     if (isValid) {
       this.loading = true;
       this.browseService
