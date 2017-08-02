@@ -3,13 +3,6 @@ import { Insights } from './insights.model';
 import { InsightsSuggestion } from './insights-suggestion.interface';
 import { Chart } from 'chart.js';
 
-Chart.defaults.global.defaultFontColor = '#fff';
-Chart.defaults.global.defaultFontFamily = '"Roboto", sans-serif';
-Chart.defaults.global.defaultFontSize = 13;
-Chart.defaults.global.legend.position = 'top';
-Chart.defaults.global.legend.labels.padding = 15;
-Chart.defaults.global.legend.labels.usePointStyle = true;
-
 const RESOURCE_TYPES = [
   {label: 'JavaScript', field: 'javascriptResponseBytes', color: 'rgba(255, 206, 86, 0.4)'},
   {label: 'Images', field: 'imageResponseBytes', color: 'rgba(89, 178, 0, 0.4)'},
@@ -34,7 +27,14 @@ export class InsightsComponent implements OnChanges {
   public screenSrc: string;
   public suggestions: Array<InsightsSuggestion>;
 
-  constructor() { }
+  constructor() {
+    Chart.defaults.global.defaultFontColor = '#fff';
+    Chart.defaults.global.defaultFontFamily = '"Roboto", sans-serif';
+    Chart.defaults.global.defaultFontSize = 13;
+    Chart.defaults.global.legend.position = 'left';
+    Chart.defaults.global.legend.labels.padding = 15;
+    Chart.defaults.global.legend.labels.usePointStyle = true;
+  }
 
   /**
    * Detect whether a data-bound property changes.
