@@ -31,6 +31,7 @@ export class InsightsComponent implements OnChanges {
   @ViewChild('resourceChart') resourceChart: ElementRef;
 
   public insights: Insights;
+  public screenSrc: string;
   public suggestions: Array<InsightsSuggestion>;
 
   constructor() { }
@@ -52,6 +53,7 @@ export class InsightsComponent implements OnChanges {
   load() {
     this.insights = new Insights(this.data);
     this.suggestions = this.insights.getSuggestions();
+    this.screenSrc = this.insights.getScreenshotSource();
     this.displayResourceChart();
   }
 

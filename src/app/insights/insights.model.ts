@@ -2,7 +2,7 @@ import { InsightsSuggestion } from './insights-suggestion.interface';
 
 export class Insights {
 
-  private data: any;
+  public data: any;
 
   constructor(data: any) {
     this.data = data;
@@ -57,6 +57,20 @@ export class Insights {
     });
 
     return suggestions;
+  }
+
+  /**
+   * Fixes base64 string by replacing '_' with '/' and '-' with '+'.
+   *
+   * @see https://groups.google.com/forum/#!topic/google-api-python-client/DjbJ0BwjbPo
+   *
+   * @returns {string}
+   */
+  getScreenshotSource() {
+    let base64 = this.data.screenshot.data.replace(/_/g, '/');
+        base64 = base64.replace(/-/g, '+');
+
+    return 'data:image/jpeg;base64,' + base64;
   }
 
 }
