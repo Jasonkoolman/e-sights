@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, ViewChild, ElementRef } from '@angular/core';
 import { Insights } from './insights.model';
 import { InsightsSuggestion } from './insights-suggestion.interface';
 import { Chart } from 'chart.js';
@@ -28,7 +28,9 @@ const RESOURCE_TYPES = [
 export class InsightsComponent implements OnChanges {
 
   @Input() data;
+  @ViewChild('resourceChart') resourceChart: ElementRef;
 
+  public insights: Insights;
   public suggestions: Array<InsightsSuggestion>;
 
   constructor() { }
@@ -40,7 +42,6 @@ export class InsightsComponent implements OnChanges {
    */
   ngOnChanges(changes: any) {
     if (changes.hasOwnProperty('data') && changes.data.currentValue ) {
-      //this.data = new Insights(this.data);
       this.load();
     }
   }
@@ -49,63 +50,9 @@ export class InsightsComponent implements OnChanges {
    * Load the insights data.
    */
   load() {
+    this.insights = new Insights(this.data);
+    this.suggestions = this.insights.getSuggestions();
     this.displayResourceChart();
-    this.getSuggestions();
-  }
-
-  /**
-   * Get the page speed score.
-   *
-   * @returns {number}
-   */
-  get pageSpeed(): number {
-    return this.data.ruleGroups.SPEED.score;
-  }
-
-  /**
-   * Get the optimization suggestions.
-   */
-  getSuggestions(): void {
-    const results = [];
-    const ruleResults = this.data.formattedResults.ruleResults;
-
-    for (const i in ruleResults) {
-      if (!ruleResults.hasOwnProperty(i)) {
-        continue;
-      }
-
-      const result = ruleResults[i];
-
-      if (result.ruleImpact < 2) {
-        continue; // ignore low-impact rules
-      }
-
-      console.log(result);
-
-      // replace summary arguments with values
-      let summary = result.summary.format;
-      const args = result.summary.args;
-
-      for (const arg in args) {
-        if (!args.hasOwnProperty(arg)) {
-          continue;
-        }
-
-        summary = summary.replace('{{' + args[arg].key + '}}', args[arg].value);
-      }
-
-      results.push({
-        name: result.localizedRuleName,
-        impact: result.ruleImpact,
-        summary: summary
-      });
-    }
-
-    results.sort((a, b) => {
-      return b.impact - a.impact; // sort by impact
-    });
-
-    this.suggestions = results;
   }
 
   /**
@@ -119,8 +66,6 @@ export class InsightsComponent implements OnChanges {
       backgroundColor: [],
     };
 
-    console.log(this.data);
-
     let totalBytes = 0;
     for (let i = 0, type; type = RESOURCE_TYPES[i]; ++i) {
       if (type.field in stats) {
@@ -132,7 +77,7 @@ export class InsightsComponent implements OnChanges {
       }
     }
 
-    new Chart('resource-chart', {
+    new Chart(this.resourceChart.nativeElement, {
       type: 'doughnut',
       data: {
         labels: labels,
@@ -145,7 +90,6 @@ export class InsightsComponent implements OnChanges {
         }
       }
     });
-
   }
 
 }

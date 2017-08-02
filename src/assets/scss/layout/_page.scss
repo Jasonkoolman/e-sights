@@ -106,3 +106,12 @@
     transform: perspective(7.5rem) rotateX(-180deg) rotateY(-179.9deg);
   }
 }
+
+#insights {
+  transition: all 600ms ease 0ms;
+
+  &.hidden {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
