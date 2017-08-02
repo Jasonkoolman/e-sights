@@ -11,6 +11,7 @@ export class BrowseComponent {
   @Output() submitted = new EventEmitter();
 
   private url: string;
+  private data: Object;
   private loading = false;
 
   constructor(private browseService: BrowseService) { }
@@ -30,6 +31,9 @@ export class BrowseComponent {
           (error) => this.cancel(error)
         );
     }
+    if (this.data) {
+      this.submitted.emit(null); // reset data to trigger animations
+    }
   }
 
   /**
@@ -37,6 +41,7 @@ export class BrowseComponent {
    */
   proceed(data: Object) {
     this.loading = false;
+    this.data = data;
     this.submitted.emit(data);
   }
 
@@ -47,7 +52,6 @@ export class BrowseComponent {
     setTimeout(() => {
       this.loading = false;
     }, 600);
-    console.log(error);
   }
 
 }

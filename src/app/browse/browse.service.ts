@@ -23,7 +23,7 @@ export class BrowseService {
 
     params.set('url', url);
     params.set('key', this.apiKey);
-    params.set('strategy', 'mobile');
+    params.set('strategy', 'desktop');
     params.set('screenshot', 'true');
 
     options.params = params;
