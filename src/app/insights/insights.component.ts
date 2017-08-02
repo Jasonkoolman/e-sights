@@ -30,7 +30,7 @@ export class InsightsComponent implements OnChanges {
   constructor() {
     Chart.defaults.global.defaultFontColor = '#fff';
     Chart.defaults.global.defaultFontFamily = '"Roboto", sans-serif';
-    Chart.defaults.global.defaultFontSize = 13;
+    Chart.defaults.global.defaultFontSize = 14;
     Chart.defaults.global.legend.position = 'left';
     Chart.defaults.global.legend.labels.padding = 15;
     Chart.defaults.global.legend.labels.usePointStyle = true;
@@ -44,6 +44,7 @@ export class InsightsComponent implements OnChanges {
   ngOnChanges(changes: any) {
     if (changes.hasOwnProperty('data') && changes.data.currentValue ) {
       this.load();
+      this.displayResourceChart();
     }
   }
 
@@ -54,7 +55,6 @@ export class InsightsComponent implements OnChanges {
     this.insights = new Insights(this.data);
     this.suggestions = this.insights.getSuggestions();
     this.screenSrc = this.insights.getScreenshotSource();
-    this.displayResourceChart();
   }
 
   /**
