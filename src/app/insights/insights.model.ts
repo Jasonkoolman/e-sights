@@ -32,16 +32,20 @@ export class Insights {
       }
 
       const result = ruleResults[i];
-      const args = result.summary.args;
 
       if (result.ruleImpact < 2) {
         continue; // ignore low-impact rules
       }
 
-      let summary = result.summary.format || '';
-      for (const arg in args) {
-        if (args.hasOwnProperty(arg)) {
-          summary = summary.replace('{{' + args[arg].key + '}}', args[arg].value); // replace summary placeholders by values
+      let summary = '';
+      if (result.hasOwnProperty('summary')) {
+        let args = result.summary.args;
+        summary = result.summary.format;
+
+        for (const arg in args) {
+          if (args.hasOwnProperty(arg)) {
+            summary = summary.replace('{{' + args[arg].key + '}}', args[arg].value); // replace summary placeholders by values
+          }
         }
       }
 
