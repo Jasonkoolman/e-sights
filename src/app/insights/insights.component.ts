@@ -45,7 +45,7 @@ export class InsightsComponent implements OnChanges {
   /**
    * Retrieve the insights data.
    */
-  private getData() {
+  private getData(): void {
     this.insights = new Insights(this.data);
     this.score = this.insights.getPageSpeedScore();
     this.screenshot = this.insights.getScreenshotSource();

@@ -38,6 +38,8 @@ export class BrowseComponent {
 
   /**
    * Proceed insights process.
+   *
+   * @param {Object} data
    */
   proceed(data: Object) {
     this.loading = false;
@@ -47,6 +49,8 @@ export class BrowseComponent {
 
   /**
    * Cancel insights process.
+   *
+   * @param {Object} error
    */
   cancel(error: Object) {
     setTimeout(() => {
