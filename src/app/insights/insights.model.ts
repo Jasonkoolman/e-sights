@@ -56,9 +56,7 @@ export class Insights {
       });
     }
 
-    suggestions.sort((a, b) => {
-      return b.impact - a.impact; // sort by impact
-    });
+    suggestions.sort((a, b) => b.impact - a.impact); // sort by impact
 
     return suggestions;
   }
